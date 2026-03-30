@@ -341,6 +341,6 @@ const regexEmail = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}';
 /// Regex to check if content type is an image.
 const regexImageContentType = r'image\/*';
 
-/// Regex to find all links in the text.
+/// Regex to find all links in the text (path chars include `_` for /shorts/_id URLs).
 const regexLink =
-    r'((http|ftp|https):\/\/)?(([\p{L}\p{N}_-]+)(?:(?:\.([\p{L}\p{N}_-]*[\p{L}_][\p{L}\p{N}_-]*))+))([\p{L}\p{N}.,@?^=%&:/~+#-]*[\p{L}\p{N}@?^=%&/~+#-])?[^\.\s]';
+    r'((http|ftp|https):\/\/)?(([\p{L}\p{N}_-]+)(?:(?:\.([\p{L}\p{N}_-]*[\p{L}_][\p{L}\p{N}_-]*))+))([\p{L}\p{N}.,@?^=%&:/~+#_-]*[\p{L}\p{N}@?^=%&/~+#_-])?[^\.\s]';
