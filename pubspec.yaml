@@ -9,7 +9,7 @@ workspace:
   - packages/cross_cache
   - packages/flutter_chat_core
   - packages/flutter_chat_ui
-  - packages/flutter_link_previewer
+  # flutter_link_previewer is maintained standalone for path/git consumption (see package pubspec).
   - packages/flyer_chat_audio_message
   - packages/flyer_chat_custom_message
   - packages/flyer_chat_file_message

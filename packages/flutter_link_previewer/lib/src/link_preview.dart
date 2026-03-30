@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_core/flutter_chat_core.dart' show LinkPreviewData;
 import 'package:url_launcher/url_launcher.dart';
+
+import 'link_preview_models.dart';
 import 'utils.dart';
 
 /// A widget that displays a preview of a URL.
@@ -377,7 +378,7 @@ class _LinkPreviewState extends State<LinkPreview>
           DecoratedBox(
             decoration: BoxDecoration(
               color:
-                  widget.backgroundColor ?? Colors.white.withValues(alpha: 0.2),
+                  widget.backgroundColor ?? Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
             child: Padding(
@@ -401,7 +402,7 @@ class _LinkPreviewState extends State<LinkPreview>
               decoration: BoxDecoration(
                 color:
                     widget.sideBorderColor ??
-                    Colors.white.withValues(alpha: 0.8),
+                    Colors.white.withOpacity(0.8),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(widget.borderRadius),
                   bottomLeft: Radius.circular(widget.borderRadius),
@@ -454,7 +455,6 @@ class _LinkPreviewState extends State<LinkPreview>
               child: SizeTransition(
                 axisAlignment: -1.0,
                 sizeFactor: _animation,
-                fixedCrossAxisSizeFactor: 1,
                 child: content,
               ),
             );
