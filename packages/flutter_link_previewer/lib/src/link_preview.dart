@@ -49,6 +49,7 @@ class LinkPreview extends StatefulWidget {
     this.enableAnimation = true,
     this.imageBuilder,
     this.gap = 4,
+    this.maxRectangleImageHeight = 350,
   });
 
   /// A callback that is called when the link preview data is fetched.
@@ -146,6 +147,10 @@ class LinkPreview extends StatefulWidget {
 
   /// The gap between the elements of the preview.
   final double gap;
+
+  /// Max height for the image below the text when og:image is not square.
+  /// Caps portrait previews (e.g. YouTube Shorts); image uses [BoxFit.cover].
+  final double maxRectangleImageHeight;
 
   @override
   State<LinkPreview> createState() => _LinkPreviewState();
@@ -325,12 +330,21 @@ class _LinkPreviewState extends State<LinkPreview>
           ),
         );
       } else {
+        final iw = previewData.image!.width;
+        final ih = previewData.image!.height;
+        final naturalAr = iw / ih;
+        final naturalHeight = finalWidth / naturalAr;
+        final cappedHeight = min(
+          naturalHeight,
+          max(1.0, widget.maxRectangleImageHeight),
+        );
+        final layoutAr = finalWidth / cappedHeight;
         rectangleImage = Padding(
           padding: EdgeInsets.only(top: hasText ? widget.gap : 0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(widget.borderRadius),
             child: AspectRatio(
-              aspectRatio: previewData.image!.width / previewData.image!.height,
+              aspectRatio: layoutAr,
               child: image,
             ),
           ),
